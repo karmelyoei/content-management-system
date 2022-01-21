@@ -34,6 +34,16 @@ class App extends React.Component {
             image: article.urlToImage,
             time: "3 min",
           });
+
+          let data = new Response(JSON.stringify(this.teslaArticles));
+
+          if ("caches" in window) {
+            // Opening given cache and putting our data into it
+            caches.open("teslaArticles").then((cache) => {
+              cache.put("https://localhost:3000", data);
+            });
+          }
+
           return this.setState({
             teslaArticles: teslaArticles,
           });
@@ -111,8 +121,7 @@ class App extends React.Component {
   };
 
   render() {
-    console.log("state", this.state.teslaArticles);
-
+    console.log(this.state.teslaArticles);
     return (
       <div className="App">
         <Typography
