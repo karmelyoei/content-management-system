@@ -121,7 +121,6 @@ class App extends React.Component {
   };
 
   render() {
-    console.log(this.state.teslaArticles);
     return (
       <div className="App">
         <Typography
