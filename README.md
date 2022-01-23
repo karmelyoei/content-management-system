@@ -30,6 +30,6 @@ Accroding to the pricing policy for the Newsapi I cant make a request at product
 
 heres the application should look like locally
 
-!(pic)[https://github.com/karmelyoei/content-management-system/blob/main/assets/csm.png]
+![pic](https://github.com/karmelyoei/content-management-system/blob/main/assets/csm.png)
 
 
