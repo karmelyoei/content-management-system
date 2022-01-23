@@ -1,7 +1,7 @@
 import * as React from "react";
 import PropTypes from "prop-types";
 import { styled } from "@mui/material/styles";
-import { Dialog, DialogTitle } from "@mui/material/Dialog";
+import { Dialog, DialogTitle } from "@mui/material";
 import IconButton from "@mui/material/IconButton";
 import CloseIcon from "@mui/icons-material/Close";
 import BasicTabs from "../tabs/tabs.component";
