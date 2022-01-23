@@ -47,6 +47,7 @@ const Category = ({
                   handleEdit={handleEdit}
                   handleDelete={handleDelete}
                   categoryIndex={categoryIndex}
+                  time={article.time}
                 />
               </Grid>
             );

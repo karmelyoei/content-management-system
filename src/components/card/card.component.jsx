@@ -19,6 +19,7 @@ const Carditem = ({
   handleEdit,
   handleDelete,
   categoryIndex,
+  time,
 }) => {
   const [open, setOpen] = React.useState(false);
   const handleClick = () => {
@@ -52,6 +53,14 @@ const Carditem = ({
                 component="div"
               >
                 {headline}
+              </Typography>
+              <Typography
+                gutterBottom
+                sx={{ fontSize: 8, textAlign: "left", color: "gray" }}
+                component="div"
+                variant="caption"
+              >
+                {time}
               </Typography>
             </CardContent>
           </CardActionArea>
