@@ -10,15 +10,40 @@ class App extends React.Component {
     techCrunchArticles: [],
     numberOfCategory: [1, 2],
     loading: true,
+    open: false,
+    time: "",
+    image: "",
+    description: "",
+    content: "",
+    title: "",
   };
 
+  // when user click add icon button it open the popupscreen
+  handleClick = () => {
+    this.setState({ ...this.state, open: true });
+  };
+
+  // close the popup screen of addbuttn
+  handleClose = () => {
+    this.setState({ ...this.state, open: false });
+  };
+
+  // get the ifno from the user of new article insertion
+  handleChange = (e) => {
+    e.preventDefault();
+    let name = e.target.name;
+    console.log("name", name);
+    this.setState({ ...this.state, [name]: e.target.value });
+  };
+
+  // get the articles from the newsapi 
   componentDidMount() {
     const teslaUrl =
-      "https://newsapi.org/v2/everything?q=tesla&from=2021-12-21&sortBy=publishedAt&apiKey=3e7d4184f8d442b89a3415bd1fe8cbc4";
+      "https://newsapi.org/v2/everything?q=tesla&from=2021-12-23&sortBy=publishedAt&apiKey=15845680d21e44368607fb33f05acc13";
 
     const techCrunchURL =
-      "https://newsapi.org/v2/top-headlines?sources=techcrunch&apiKey=3e7d4184f8d442b89a3415bd1fe8cbc4";
-    // get the articles from https://newsapi.org/ API
+      "https://newsapi.org/v2/top-headlines?sources=techcrunch&apiKey=15845680d21e44368607fb33f05acc13";
+    // get the articles from https://newsapi.org/ API categorery 1
     axios
       .get(teslaUrl)
       .then((response) => {
@@ -50,7 +75,7 @@ class App extends React.Component {
         });
       })
       .catch((error) => console.log(error));
-
+    // get the articles from https://newsapi.org/ API categorery 2
     axios
       .get(techCrunchURL)
       .then((response) => {
@@ -73,6 +98,7 @@ class App extends React.Component {
       .catch((error) => console.log(error));
   }
 
+  // edit the article
   handleEdit = (index, categoryIndex) => {
     if (categoryIndex === 1) {
       let teslaArticles = this.state.teslaArticles;
@@ -101,6 +127,7 @@ class App extends React.Component {
     }
   };
 
+  // delete the article
   handleDelete = (index, categoryIndex) => {
     if (categoryIndex === 1) {
       this.setState({
@@ -117,6 +144,35 @@ class App extends React.Component {
           return i !== index;
         }),
       });
+    }
+  };
+
+  // add new article
+  handleAdd = (categoryIndex) => {
+    console.log("cat", categoryIndex);
+    console.log("title", this.state);
+    if (categoryIndex === 1) {
+      let teslaArticles = this.state.teslaArticles;
+      teslaArticles.unshift({
+        title: this.state.title,
+        content: this.state.content,
+        description: this.state.description,
+        image: this.state.image,
+        time: this.state.time,
+      });
+      this.setState({ ...this.state, teslaArticles });
+      this.setState({ ...this.state, open: false });
+    } else if (categoryIndex === 2) {
+      let techCrunchArticles = this.state.techCrunchArticles;
+      techCrunchArticles.unshift({
+        title: this.state.title,
+        content: this.state.content,
+        description: this.state.description,
+        image: this.state.image,
+        time: this.state.time,
+      });
+      this.setState({ ...this.state, techCrunchArticles });
+      this.setState({ ...this.state, open: false });
     }
   };
 
@@ -153,6 +209,11 @@ class App extends React.Component {
                   articles={this.state.teslaArticles}
                   handleEdit={this.handleEdit}
                   handleDelete={this.handleDelete}
+                  handleAdd={this.handleAdd}
+                  handleClick={this.handleClick}
+                  open={this.state.open}
+                  handleClose={this.handleClose}
+                  handleChange={this.handleChange}
                 />
               );
             else
@@ -164,6 +225,11 @@ class App extends React.Component {
                   articles={this.state.techCrunchArticles}
                   handleEdit={this.handleEdit}
                   handleDelete={this.handleDelete}
+                  handleAdd={this.handleAdd}
+                  handleClick={this.handleClick}
+                  open={this.state.open}
+                  handleClose={this.handleClose}
+                  handleChange={this.handleChange}
                 />
               );
           })
