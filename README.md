@@ -15,7 +15,7 @@ https://csm-app-myndlift.herokuapp.com/
 # How to run the project?
 
 Please clone this repo by running this command:
-` git clone `
+` git clone https://github.com/karmelyoei/content-management-system.git`
 
 to run this app locally please run:
 
@@ -30,6 +30,6 @@ Accroding to the pricing policy for the Newsapi I cant make a request at product
 
 heres the application should look like locally
 
-!(pic)[]
+!(pic)[https://github.com/karmelyoei/content-management-system/blob/main/assets/csm.png]
 
 
